@@ -6,28 +6,28 @@
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\Applications\SPT_3_10\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\Applications\SPT_3_10\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\Applications\SPT_3_10\EscapeFromTarkov_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\EscapeFromTarkov_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\Applications\SPT_3_10\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Harmony">
-      <HintPath>..\..\..\Applications\SPT_3_10\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\BepInEx\core\BepInEx.Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Preloader">
-      <HintPath>..\..\..\Applications\SPT_3_10\BepInEx\core\BepInEx.Preloader.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\BepInEx\core\BepInEx.Preloader.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\Applications\SPT_3_10\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\Applications\SPT_3_10\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>D:\BattleStateGames\SPT_3_11\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
