@@ -4,6 +4,7 @@
     using HarmonyLib;
     using EFT.InventoryLogic;
     using EFT;
+    using RootMotion;
 
     [BepInPlugin(GUID, NAME, VERSION)]
     public class MeaningfulWeaponMasteries : BaseUnityPlugin
@@ -22,7 +23,7 @@
         public class SkillManager_GetWeaponInfo
         {
             [HarmonyPostfix]
-            public static void Postfix(SkillManager __instance, ref SkillManager.GClass1981 __result, Item weapon)
+            public static void Postfix(SkillManager __instance, ref SkillManager.GClass2017 __result, Item weapon)
             {
                 int mastering = __instance?.GetMastering(weapon.TemplateId)?.Level ?? 0;
                 //__result.DeltaErgonomics += 0.05f * mastering;
@@ -31,6 +32,22 @@
                 __result.FixSpeed += 0.05f * mastering;
             }
         }
+
+        //[HarmonyPatch(typeof(Weapon), "CenterOfImpactDelta", MethodType.Getter)]
+        //public class Weapon_CenterOfImpactDelta
+        //{
+        //    [HarmonyPostfix]
+        //    public static void Postfix(Weapon __instance, ref float __result)
+        //    {
+        //        if (Singleton<GameWorld>.instance.allAlivePlayersByID[__instance.Owner.ID] is Player player)
+        //        {
+
+        //        }
+        //        //__instance.Owner.ID 
+        //    }
+        //}
+
+        //public float Weapon.CenterOfImpactDelta
 
         //[HarmonyPatch(typeof(Weapon), "ErgonomicsDelta", MethodType.Getter)]
         //public class Weapon_ErgonomicsDelta
