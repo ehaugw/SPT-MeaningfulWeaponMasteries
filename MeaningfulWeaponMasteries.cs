@@ -4,7 +4,6 @@
     using HarmonyLib;
     using EFT.InventoryLogic;
     using EFT;
-    using RootMotion;
 
     [BepInPlugin(GUID, NAME, VERSION)]
     public class MeaningfulWeaponMasteries : BaseUnityPlugin
