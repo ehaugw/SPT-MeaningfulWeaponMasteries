@@ -4,6 +4,7 @@
     using HarmonyLib;
     using EFT.InventoryLogic;
     using EFT;
+    using System;
 
     [BepInPlugin(GUID, NAME, VERSION)]
     public class MeaningfulWeaponMasteries : BaseUnityPlugin
@@ -31,16 +32,34 @@
             }
         }
 
-        [HarmonyPatch(typeof(Weapon), "CenterOfImpactBase", MethodType.Getter)]
-        public class Weapon_CenterOfImpactBase
+        [HarmonyPatch(typeof(Weapon), nameof(Weapon.CenterOfImpactDelta), MethodType.Getter)]
+        public class Weapon_CenterOfImpactDelta
         {
             [HarmonyPostfix]
             public static void Postfix(Weapon __instance, ref float __result)
             {
                 if (__instance.Owner is InventoryController inventoryController && inventoryController.Profile is Profile profile && profile.SkillsInfo is SkillManager manager)
                 {
+                    int projectileCount;
+
+                    if ((__instance?.FirstLoadedChamberSlot?.ContainedItem ?? __instance?.GetCurrentMagazine()?.FirstRealAmmo()) is AmmoItemClass ammoClassChamber)
+                    {
+                        projectileCount = ammoClassChamber.ProjectileCount;
+                    }
+                    else
+                    {
+                        projectileCount = __instance.CurrentAmmoTemplate.ProjectileCount;
+                    }
+
+                    if (projectileCount > 1)
+                    {
+                        return;
+                    }
+
                     int mastering = manager.GetMastering(__instance.TemplateId)?.Level ?? 0;
-                    __result -= __result * 0.1f * mastering;
+                    var bonus = 0.15f * mastering * Math.Min(1.0f, 1 / __instance.CenterOfImpactBase);
+
+                    __result -= bonus;
                 }
             }
         }
