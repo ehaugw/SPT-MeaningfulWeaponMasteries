@@ -32,8 +32,8 @@
             }
         }
 
-        [HarmonyPatch(typeof(Weapon), nameof(Weapon.CenterOfImpactDelta), MethodType.Getter)]
-        public class Weapon_CenterOfImpactDelta
+        [HarmonyPatch(typeof(Weapon), nameof(Weapon.CenterOfImpactBase), MethodType.Getter)]
+        public class Weapon_CenterOfImpactBase
         {
             [HarmonyPostfix]
             public static void Postfix(Weapon __instance, ref float __result)
@@ -57,9 +57,7 @@
                     }
 
                     int mastering = manager.GetMastering(__instance.TemplateId)?.Level ?? 0;
-                    var bonus = 0.15f * mastering * Math.Min(1.0f, 1 / __instance.CenterOfImpactBase);
-
-                    __result -= bonus;
+                    __result *= (1.0f - 0.15f * mastering);
                 }
             }
         }
