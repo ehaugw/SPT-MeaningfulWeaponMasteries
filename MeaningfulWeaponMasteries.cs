@@ -10,7 +10,7 @@
     public class MeaningfulWeaponMasteries : BaseUnityPlugin
     {
         public const string GUID = "com.ehaugw.meaningfulweaponmasteries";
-        public const string VERSION = "1.0.5";
+        public const string VERSION = "1.0.6";
         public const string NAME = "Meaningful Weapon Masteries";
 
         internal void Awake()
@@ -32,8 +32,8 @@
             }
         }
 
-        [HarmonyPatch(typeof(Weapon), nameof(Weapon.CenterOfImpactBase), MethodType.Getter)]
-        public class Weapon_CenterOfImpactBase
+        [HarmonyPatch(typeof(Weapon), nameof(Weapon.CenterOfImpactDelta), MethodType.Getter)]
+        public class Weapon_CenterOfImpactDelta
         {
             [HarmonyPostfix]
             public static void Postfix(Weapon __instance, ref float __result)
@@ -57,7 +57,7 @@
                     }
 
                     int mastering = manager.GetMastering(__instance.TemplateId)?.Level ?? 0;
-                    __result *= (1.0f - 0.15f * mastering);
+                    __result -= mastering * 0.10f;
                 }
             }
         }
