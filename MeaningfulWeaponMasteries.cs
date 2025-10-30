@@ -10,7 +10,7 @@
     public class MeaningfulWeaponMasteries : BaseUnityPlugin
     {
         public const string GUID = "com.ehaugw.meaningfulweaponmasteries";
-        public const string VERSION = "1.0.6";
+        public const string VERSION = "1.0.7";
         public const string NAME = "Meaningful Weapon Masteries";
 
         internal void Awake()
@@ -32,8 +32,8 @@
             }
         }
 
-        [HarmonyPatch(typeof(Weapon), nameof(Weapon.CenterOfImpactDelta), MethodType.Getter)]
-        public class Weapon_CenterOfImpactDelta
+        [HarmonyPatch(typeof(Weapon), nameof(Weapon.GetTotalCenterOfImpact))]
+        public class AccuracyPatch
         {
             [HarmonyPostfix]
             public static void Postfix(Weapon __instance, ref float __result)
@@ -55,23 +55,13 @@
                     {
                         return;
                     }
-
+                    const float moa_bonus_per_mastery = 0.05f;
+                    var capped_moa = Math.Min(__result, 2.9089f / 100);
+                    
                     int mastering = manager.GetMastering(__instance.TemplateId)?.Level ?? 0;
-                    __result -= mastering * 0.10f;
+                    __result -= capped_moa * mastering * moa_bonus_per_mastery;
                 }
             }
         }
-
-        //public float Weapon.CenterOfImpactDelta
-
-        //[HarmonyPatch(typeof(Weapon), "ErgonomicsDelta", MethodType.Getter)]
-        //public class Weapon_ErgonomicsDelta
-        //{
-        //    [HarmonyPostfix]
-        //    public static void Postfix(Weapon __instance, ref float __result)
-        //    {
-        //        __result += 0.2f;
-        //    }
-        //}
     }
 }
