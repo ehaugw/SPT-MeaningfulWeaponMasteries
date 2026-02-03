@@ -10,7 +10,7 @@
     public class MeaningfulWeaponMasteries : BaseUnityPlugin
     {
         public const string GUID = "com.ehaugw.meaningfulweaponmasteries";
-        public const string VERSION = "1.0.7";
+        public const string VERSION = "1.0.8";
         public const string NAME = "Meaningful Weapon Masteries";
 
         internal void Awake()
